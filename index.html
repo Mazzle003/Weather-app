@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en" class="text-[62.5%]">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet">
+
+    <link href="./src/index.css" rel="stylesheet">
+
+    <title>Weather App</title>
+  </head>
+  <body class="min-h-screen bg-[#03012d] text-[#FFF] w-[90%] mx-auto">
+    <main>
+
+      <header class="sm:px-[3rem] py-[2rem] md:py-[3rem]">
+        <div class="grid grid-cols-2 md:grid-cols-[2fr_1fr] items-center gap-[3rem] justify-between">
+          <div>
+            <img src="./assets/images/logo.svg" alt="App Logo" />
+          </div>
+
+          <div class="flex flex-col relative">
+            <div class="bg-[#272541] flex items-center gap-[1rem] self-end p-[1rem] rounded-[1rem]">
+              <img src="/assets/images/icon-units.svg" alt="Units Icon" />
+              <p class="text-[1.4rem]">Units</p>
+              <img src="/assets/images/icon-dropdown.svg" alt="Dropdown Icon" />
+            </div>
+
+            <!-- dropdown contents -->
+            <div class="hidden absolute">
+              <ul class="dropdown-list">
+                <li class="dropdown-items">Switch to Imperial/Metric</li>
+                <li class="dropdown-items">
+                  <span>Temperature</span>
+                  <ul>
+                    <li>Celsius (°C)</li>
+                    <li>Fahrenheit (°F)</li>
+                  </ul>
+                </li>
+                <li class="dropdown-items">
+                  <span>Wind Speed</span>
+                  <ul>
+                    <li>km/h</li>
+                    <li>mph</li>
+                  </ul>
+                </li>
+                <li class="dropdown-items">
+                  <span>Precipitation</span>
+                  <ul>
+                    <li>Millimeters (mm)</li>
+                    <li>Inches (in)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero-section grid justify-items-center sm:px-[3rem] py-[3rem]">
+        <div class="md:w-[80%]">
+          <h1 class="text-[4rem] md:text-[3.5rem] text-center px-[2.5rem] leading-[1] font-[700] pb-[6rem]">How's the sky looking today?</h1>
+          <div class="flex flex-col md:flex-row items-center justify-center gap-[1.5rem] md:px-[7rem]">
+            <span class="w-full md:w-[50%] flex items-center bg-[#272541] text-[1.4rem] py-[1rem] px-[2rem] rounded-[1rem] gap-[1rem]">
+              <label for="place">
+                <img src="./assets/images/icon-search.svg" alt="Search Icon"/>
+              </label>
+              <input class="outline-none flex-2" type="text" id="place" placeholder="Search for a place......" required/>
+            </span>
+            <button class="w-full md:w-auto bg-[#4455da] border-none outline-none px-[1.5rem] py-[1rem] text-[1.4rem] font-[] rounded-[1rem]">Search</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid lg:grid-cols-[2fr_1fr] items-start gap-[2.5rem] sm:px-[3rem] pb-[6rem]">
+        <div class="main-forecast">
+          <div class="">
+            <div class="bg-cover bg-center bg-no-repeat h-[25rem] md:h-[28.6rem] rounded-[2rem] flex flex-col items-center md:flex-row md:items-center md:justify-between p-[3rem]"
+            style="background-image: url('./assets/images/bg-today-large.svg');">
+              <div class="md:w-[70%] flex flex-col gap-[1rem] md:flex-2">
+                <h2 class="text-[2.5rem] font-[600]">Germany, Berlin</h2>
+                <p class="text-[#aeaeb7] text-[1.5rem]">Today, August 25, 2025</p>
+              </div>
+              <div class="md:w-[30%] flex items-center justify-between">
+                <div class="md:w-[50%] flex justify-start">
+                  <img class="w-[80%] md:w-[100%]" src="./assets/images/icon-sunny.webp" alt="Sunny Icon"/>
+                </div>
+                <p class="text-[6rem] font-[600] italic">28</p>
+              </div>
+            </div>
+
+            <div class="w-full grid grid-cols-2 md:grid-cols-4 items-center justify-items-center gap-[1.5rem] mt-[2rem] mb-[3rem] text-[1.6rem]">
+              <div class="w-full bg-[#272541] p-5 rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1.2rem]">
+                <p class="text-[#aeaeb7]">Feels Like</p>
+                <p class="text-[2.5rem]">18&deg;</p>
+              </div>
+              <div class="w-full bg-[#272541] p-5 rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1.2rem]">
+                <p class="text-[#aeaeb7]">Humidity</p>
+                <p class="text-[2.5rem]">46%</p>
+              </div>
+              <div class="w-full bg-[#272541] p-5 rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1.2rem]">
+                <p class="text-[#aeaeb7]">Wind</p>
+                <p class="text-[2.5rem]">14 km/h</p>
+              </div>
+              <div class="w-full bg-[#272541] p-5 rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1.2rem]">
+                <p class="text-[#aeaeb7]">Precipitation</p>
+                <p class="text-[2.5rem]">0 mm</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-[1.4rem]">
+            <h2 class="text-[1.6rem] mb-[1.8rem] font-[600]">Daily Forecast</h2>
+            <div class="w-full grid grid-cols-3 md:grid-cols-7 items-center gap-[1rem] text-[1.2rem]">
+              <div class="bg-[#272541] py-3 px-[1rem]  rounded-[1rem] border-1 border-neutral-600 flex flex-col justify-center gap-[1rem]">
+                <p class="text-center">Tue</p>
+                <img src="./assets/images/icon-rain.webp" alt="Rain icon"/>
+                <span class="flex items-center justify-between">
+                  <p>20&deg;</p>
+                  <p>14&deg;</p>
+                </span>
+              </div>
+              <div class="bg-[#272541] py-3 px-[1rem] rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1rem]">
+                <p class="text-center">Wed</p>
+                <img src="./assets/images/icon-drizzle.webp" alt="Drizzle icon" />
+                <span class="flex items-center justify-between">
+                  <p>21&deg;</p>
+                  <p>15&deg;</p>
+                </span>
+              </div>
+              <div class="bg-[#272541] py-3 px-[1rem] rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1rem]">
+                <p class="text-center">Thu</p>
+                <img src="./assets/images/icon-sunny.webp" alt="Sunny icon" />
+                <span class="flex items-center justify-between">
+                  <p>24&deg;</p>
+                  <p>14&deg;</p>
+                </span>
+              </div>
+              <div class="bg-[#272541] py-3 px-[1rem] rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1rem]">
+                <p class="text-center">Fri</p>
+                <img src="./assets/images/icon-partly-cloudy.webp" alt="Partly-cloudy icon" />
+                <span class="flex items-center justify-between">
+                  <p>25&deg;</p>
+                  <p>13&deg;</p>
+                </span>
+              </div>
+              <div class="bg-[#272541] py-3 px-[1rem] rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1rem]">
+                <p class="text-center">Sat</p>
+                <img src="./assets/images/icon-storm.webp" alt="Storm icon" />
+                <span class="flex items-center justify-between">
+                  <p>21&deg;</p>
+                  <p>15&deg;</p>
+                </span>
+              </div>
+              <div class="bg-[#272541] py-3 px-[1rem] rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1rem]">
+                <p class="text-center">Sun</p>
+                <img src="./assets/images/icon-snow.webp" alt="Snow icon" />
+                <span class="flex items-center justify-between">
+                  <p>25&deg;</p>
+                  <p>16&deg;</p>
+                </span>
+              </div>
+              <div class="bg-[#272541] py-3 px-[1rem] rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1rem]">
+                <p class="text-center">Mon</p>
+                <img src="./assets/images/icon-fog.webp" alt="Fog icon" />
+                <span class="flex items-center justify-between">
+                  <p>24&deg;</p>
+                  <p>15&deg;</p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hourly-forecast bg-[#272541] text-[1.6rem] p-[2rem] rounded-[2rem]">
+          <div class="flex items-center justify-between mb-[1.8rem]">
+            <h2 class="text-[1.6rem] font-[600]">Hourly-forecast</h2>
+            <div>
+              <span class="bg-[#3d3b5e] flex items-center gap-[1rem] py-[0.8rem] px-[1rem] rounded-[1rem]">
+                <p class="text-[1.2rem]">Monday</p>
+                <img src="./assets/images/icon-dropdown.svg" alt="Dropdown Icon" />
+              </span>
+              <ul class="text-[1.2rem] hidden">
+                <li>Tuesday</li>
+                <li>Wednesday</li>
+                <li>Thursday</li>
+                <li>Friday</li>
+                <li>Saturday</li>
+                <li>Sunday</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-[1rem]">
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-overcast.webp" alt="Overcast icon" />
+                <p class="font-[500]">3 PM</p>
+              </span>
+              <span>
+                <p>20&deg;</p>
+              </span>
+            </div>
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-partly-cloudy.webp" alt="Partly-cloudy icon" />
+                <p class="font-[500]">4 PM</p>
+              </span>
+              <span>
+                <p>20&deg;</p>
+              </span>
+            </div>
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-sunny.webp" alt="Sunny icon" />
+                <p class="font-[500]">5 PM</p>
+              </span>
+              <span>
+                <p>20&deg;</p>
+              </span>
+            </div>
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-overcast.webp" alt="Overcast icon" />
+                <p class="font-[500]">6 PM</p>
+              </span>
+              <span>
+                <p>19&deg;</p>
+              </span>
+            </div>
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-snow.webp" alt="Snow icon" />
+                <p class="font-[500]">7 PM</p>
+              </span>
+              <span>
+                <p>18&deg;</p>
+              </span>
+            </div>
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-fog.webp" alt="Fog icon" />
+                <p class="font-[500]">8 PM</p>
+              </span>
+              <span>
+                <p>18&deg;</p>
+              </span>
+            </div>
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-snow.webp" alt="Snow icon" />
+                <p class="font-[500]">9 PM</p>
+              </span>
+              <span>
+                <p>17&deg;</p>
+              </span>
+            </div>
+            <div
+              class="bg-[#312f4b] flex items-center justify-between py-[0.8rem] px-[1rem] border-1 border-neutral-600 rounded-[1rem]">
+              <span class="flex items-center gap-[1rem]">
+                <img class="w-[4rem]" src="./assets/images/icon-overcast.webp" alt="Overcast icon" />
+                <p class="font-[500]">10 PM</p>
+              </span>
+              <span>
+                <p>17&deg;</p>
+              </span>
+            </div>
+
+          </div>
+          
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
