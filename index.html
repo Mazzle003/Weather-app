@@ -10,7 +10,9 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet">
 
-    <link href="./src/index.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      
+      <link href="style.css" rel="stylesheet">
 
     <title>Weather App</title>
   </head>
@@ -23,36 +25,62 @@
             <img src="./assets/images/logo.svg" alt="App Logo" />
           </div>
 
-          <div class="flex flex-col relative">
-            <div class="bg-[#272541] flex items-center gap-[1rem] self-end p-[1rem] rounded-[1rem]">
+          <div class="flex flex-col relative z-[10]">
+            <div id="unitsBtn" class="bg-[#272541] flex items-center gap-[1rem] self-end p-[1rem] rounded-[1rem] cursor-pointer">
               <img src="/assets/images/icon-units.svg" alt="Units Icon" />
               <p class="text-[1.4rem]">Units</p>
-              <img src="/assets/images/icon-dropdown.svg" alt="Dropdown Icon" />
+              <img id="unitDropdownIcon" class="transition-transform duration-300" src="/assets/images/icon-dropdown.svg"
+                alt="Dropdown Icon" />
             </div>
 
-            <!-- dropdown contents -->
-            <div class="hidden absolute">
-              <ul class="dropdown-list">
-                <li class="dropdown-items">Switch to Imperial/Metric</li>
-                <li class="dropdown-items">
+            <!-- dropdown -->
+            <div id="unitsdropdown"
+              class="w-[100%] md:w-[70%] bg-[#272541] absolute top-[5rem] right-[0] p-[1rem] rounded-[1rem] border-1 border-neutral-600 opacity-0 invisible -translate-y-2 scale-95 transition-all duration-300 ease-out pointer-events-none">
+              <ul class="flex flex-col gap-[1rem] text-[1.4rem] dropdown-list">
+                <li class="font-[500] text-[#fff] text-[1.4rem]">Switch to Imperial/Metric</li>
+                <li class="font-[500] text-[#d5d4d9] text-[1.2rem]">
                   <span>Temperature</span>
-                  <ul>
-                    <li>Celsius (°C)</li>
-                    <li>Fahrenheit (°F)</li>
+                  <ul class="flex flex-col justify-center gap-[0.2rem] text-[#fff] text-[1.6rem] border-b-1 border-neutral-600">
+                    <li
+                      class="flex items-center justify-between p-[0.5rem] hover:bg-[#312f4b] transition-all duration-300 ease-out rounded-[0.5rem] cursor-pointer">
+                      <span>Celsius (°C)</span>
+                      <span class="hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon" </span>
+                    </li>
+                    <li
+                      class="flex items-center justify-between p-[0.5rem] hover:bg-[#312f4b] transition-all duration-300 ease-out rounded-[0.5rem] cursor-pointer">
+                      <span>Fahrenheit (°F)</span>
+                      <span class="hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon" </span>
+                    </li>
                   </ul>
                 </li>
-                <li class="dropdown-items">
+                <li class="font-[500] text-[#d5d4d9] text-[1.2rem]">
                   <span>Wind Speed</span>
-                  <ul>
-                    <li>km/h</li>
-                    <li>mph</li>
+                  <ul class="flex flex-col justify-center gap-[0.2rem] text-[#fff] text-[1.6rem] border-b-1 border-neutral-600">
+                    <li
+                      class="flex items-center justify-between p-[0.5rem] hover:bg-[#312f4b] transition-all duration-300 ease-out rounded-[0.5rem] cursor-pointer">
+                      <span>km/h</span>
+                      <span class="hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon" </span>
+                    </li>
+                    <li
+                      class="flex items-center justify-between p-[0.5rem] hover:bg-[#312f4b] transition-all duration-300 ease-out rounded-[0.5rem] cursor-pointer">
+                      <span>mph</span>
+                      <span class="hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon" </span>
+                    </li>
                   </ul>
                 </li>
-                <li class="dropdown-items">
+                <li class="font-[500] text-[#d5d4d9] text-[1.2rem]">
                   <span>Precipitation</span>
-                  <ul>
-                    <li>Millimeters (mm)</li>
-                    <li>Inches (in)</li>
+                  <ul class="flex flex-col justify-center gap-[0.2rem] text-[#fff] text-[1.6rem]">
+                    <li
+                      class="flex items-center justify-between p-[0.5rem] hover:bg-[#312f4b] transition-all duration-300 ease-out rounded-[0.5rem] cursor-pointer">
+                      <span>Millimeters (mm)</span>
+                      <span class="hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon" </span>
+                    </li>
+                    <li
+                      class="flex items-center justify-between p-[0.5rem] hover:bg-[#312f4b] transition-all duration-300 ease-out rounded-[0.5rem] cursor-pointer">
+                      <span>Inches (in)</span>
+                      <span class="hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon" </span>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -80,8 +108,7 @@
         <div class="main-forecast">
           <div class="">
             <div
-              class="bg-cover bg-center bg-no-repeat h-[28.6rem] rounded-[2rem] flex flex-col justify-between md:flex-row md:items-center md:justify-between p-[3rem]"
-            style="background-image: url('./assets/images/bg-today-large.svg');">
+              class="bg-[url(./assets/images/bg-today-small.svg)] md:bg-[url(./assets/images/bg-today-large.svg)] bg-cover bg-center bg-no-repeat h-[28.6rem] rounded-[2rem] flex flex-col justify-between md:flex-row md:items-center md:justify-between p-[3rem]">
               <div class="md:w-[60%] flex flex-col gap-[0.5rem] md:flex-2">
                 <h2 class="text-[3rem] text-center md:text-left font-[600]">Germany, Berlin</h2>
                 <p class="text-[#d5d4d9] text-[1.6rem] text-center md:text-left font-[600]">Today, August 25, 2025</p>
@@ -192,20 +219,23 @@
         </div>
 
         <div class="hourly-forecast bg-[#272541] text-[1.6rem] p-[1.6rem] rounded-[2rem]">
-          <div class="flex items-center justify-between mb-[2.2rem]">
+          <div class="flex items-center justify-between mb-[2.2rem] relative">
             <h2 class="text-[2rem] font-[600]">Hourly-forecast</h2>
-            <div>
-              <span class="bg-[#3d3b5e] flex items-center gap-[1rem] py-[0.8rem] px-[1rem] rounded-[1rem]">
+            <div class="">
+              <span id="hourlyBtn"
+                class="bg-[#3d3b5e] flex items-center gap-[1rem] py-[0.8rem] px-[1rem] rounded-[1rem] cursor-pointer">
                 <p class="text-[1.2rem]">Monday</p>
-                <img src="./assets/images/icon-dropdown.svg" alt="Dropdown Icon" />
+                <img id="hourlyIcon" src="./assets/images/icon-dropdown.svg" alt="Dropdown Icon" />
               </span>
-              <ul class="text-[1.2rem] hidden">
-                <li>Tuesday</li>
-                <li>Wednesday</li>
-                <li>Thursday</li>
-                <li>Friday</li>
-                <li>Saturday</li>
-                <li>Sunday</li>
+              <ul id="hourDropdown"
+                class="text-[1.4rem] absolute w-[70%] md:w-[70%] bg-[#272541] absolute top-[5rem] right-[0] p-[1rem] rounded-[1rem] border-1 border-neutral-600 opacity-0 -translate-y-2 scale-95 transition-all duration-300 ease-out pointer-events-none z-[20]">
+                <li class="p-[1rem] hover:bg-[#312f4b] rounded-[1rem] cursor-pointer">Monday</li>
+                <li class="p-[1rem] hover:bg-[#312f4b] rounded-[1rem] cursor-pointer">Tuesday</li>
+                <li class="p-[1rem] hover:bg-[#312f4b] rounded-[1rem] cursor-pointer">Wednesday</li>
+                <li class="p-[1rem] hover:bg-[#312f4b] rounded-[1rem] cursor-pointer">Thursday</li>
+                <li class="p-[1rem] hover:bg-[#312f4b] rounded-[1rem] cursor-pointer">Friday</li>
+                <li class="p-[1rem] hover:bg-[#312f4b] rounded-[1rem] cursor-pointer">Saturday</li>
+                <li class="p-[1rem] hover:bg-[#312f4b] rounded-[1rem] cursor-pointer">Sunday</li>
               </ul>
             </div>
           </div>
@@ -297,6 +327,6 @@
         </div>
       </section>
     </main>
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
