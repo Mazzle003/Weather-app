@@ -3,77 +3,81 @@ const unitsBtn = document.getElementById("unitsBtn");
 const unitsDropdownIcon = document.getElementById("unitDropdownIcon");
 const unitsDropdown = document.getElementById("unitsdropdown");
 
-console.log(document);
 
-// Units Dropdown
+// UNITS DROPDOWN HANDLER
 const dropdownHandler = function () {
-    unitsBtn.addEventListener("click", () => {
-      const isClosed = unitsDropdown.classList.contains("invisible");
+  const isClosed = unitsDropdown.classList.contains("invisible");
 
-      if (isClosed) {
-        // open
-        unitsDropdown.classList.remove(
-          "opacity-0",
-          "invisible",
-          "-translate-y-2",
-          "scale-95",
-          "pointer-events-none",
-        );
-        unitsDropdown.classList.add(
-          "opacity-100",
-          "visible",
-          "translate-y-0",
-          "scale-100",
-        );
-        unitsDropdownIcon.classList.add("rotate-180");
-        metricsOPtions.classList.add("hover:bg-[#3d3b5e]");
-      } else {
-        // close
-        unitsDropdown.classList.add(
-          "opacity-0",
-          "invisible",
-          "-translate-y-2",
-          "scale-95",
-          "pointer-events-none"
-        );
-        unitsDropdown.classList.remove(
-          "opacity-100",
-          "visible",
-          "translate-y-0",
-          "scale-100",
-        );
-        unitsDropdownIcon.classList.remove("rotate-180");
-      }
-    });
-}
+  if (isClosed) {
+    // open
+    unitsDropdown.classList.remove(
+      "opacity-0",
+      "invisible",
+      "-translate-y-2",
+      "scale-95",
+      "pointer-events-none",
+    );
+    unitsDropdown.classList.add(
+      "opacity-100",
+      "visible",
+      "translate-y-0",
+      "scale-100",
+    );
+    unitsDropdownIcon.classList.add("rotate-180");
+    // metricsOPtions.classList.add("hover:bg-[#3d3b5e]");
+  } else {
+    // close
+    unitsDropdown.classList.add(
+      "opacity-0",
+      "invisible",
+      "-translate-y-2",
+      "scale-95",
+      "pointer-events-none",
+    );
+    unitsDropdown.classList.remove(
+      "opacity-100",
+      "visible",
+      "translate-y-0",
+      "scale-100",
+    );
+    unitsDropdownIcon.classList.remove("rotate-180");
+  }
+};
 
-dropdownHandler();
+unitsBtn.addEventListener("click", dropdownHandler);
 
+
+// HOURLY FORECAST HANDLER
 const hourlyBtn = document.getElementById("hourlyBtn");
 const hourlyIcon = document.getElementById("hourlyIcon");
 const hourDropdown = document.getElementById("hourDropdown");
+const days = document.querySelectorAll(".day");
 
-hourlyBtn.addEventListener("click", () => {
-    const isTrue = hourDropdown.classList.contains("invisible");
+const hourlyDropdownHandler = function () {
+  const isTrue = hourDropdown.classList.contains("invisible");
 
-    if (isTrue) {
-        hourDropdown.classList.remove(
-          "opacity-0",
-          "invisible",
-          "-translate-y-2",
-          "scale-95",
-          "pointer-events-none",
-        );
+  if (isTrue) {
+    hourDropdown.classList.remove(
+      "opacity-0",
+      "invisible",
+      "-translate-y-2",
+      "scale-95",
+      "pointer-events-none",
+    );
 
-        hourDropdown.classList.add(
-          "opacity-100",
-          "visible",
-          "translate-y-0",
-          "scale-100",
-        );
+    hourDropdown.classList.add(
+      "opacity-100",
+      "visible",
+      "translate-y-0",
+      "scale-100",
+    );
 
-        hourlyIcon.classList.add("rotate-180");
-    } else {
+    hourlyIcon.classList.add("rotate-180");
+
+    for (const day of days) {
+      day.addEventListener("click", () => {
+        document.getElementById("dayselect").innerText = day.innerText;
+
         hourDropdown.classList.add(
           "opacity-0",
           "invisible",
@@ -90,8 +94,29 @@ hourlyBtn.addEventListener("click", () => {
         );
 
         hourlyIcon.classList.remove("rotate-180");
+      });
     }
-});
+  } else {
+    hourDropdown.classList.add(
+      "opacity-0",
+      "invisible",
+      "-translate-y-2",
+      "scale-95",
+      "pointer-events-none",
+    );
+
+    hourDropdown.classList.remove(
+      "opacity-100",
+      "visible",
+      "translate-y-0",
+      "scale-100",
+    );
+
+    hourlyIcon.classList.remove("rotate-180");
+  }
+};
+
+hourlyBtn.addEventListener("click", hourlyDropdownHandler);
 
 
 
