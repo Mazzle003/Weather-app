@@ -175,10 +175,17 @@ hourlyBtn.addEventListener("click", hourlyDropdownHandler);
 
 
 const apiKey = "cad8c45718434d4e8c7132619262610";
+<<<<<<< HEAD
 const baseUrl = "http://api.weatherapi.com/v1/current.json";
 
 const getWeather = function () {
   result = fetch(`${baseUrl}?key=${apiKey}&q=Nigeria&aqi=yes`)
+=======
+const baseUrl = "https://api.weatherapi.com/v1/forecast.json";
+
+const getWeather = function () {
+  const result = fetch(`${baseUrl}?key=${apiKey}&q=Nigeria&aqi=yes`)
+>>>>>>> working-branc
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
