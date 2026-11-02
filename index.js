@@ -178,18 +178,23 @@ const apiKey = "cad8c45718434d4e8c7132619262610";
 const baseUrl = "https://api.weatherapi.com/v1/forecast.json";
 
 const getWeather = function () {
-  result = fetch(`${baseUrl}?key=${apiKey}&q=city&aqi=yes`)
+  const result = fetch(`${baseUrl}?key=${apiKey}&q=city&aqi=yes`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      console.log(data.current.feelslike_c);
+      // console.log(data.current.feelslike_c);
+      console.log(data.location);
       // console.log(data.current);
       // console.log(data.forecast);
     });
 };
 
-// getWeather();
+getWeather();
 
 searchBtn.addEventListener("click", () => {
-  getWeather();
+  const addedLocation = document.getElementById("locationCollector").value;
+  console.log(addedLocation);
+  locationName.innerText = `${addedLocation}, ${location.name}`;
+  // date.innerText = ;
+  // getWeather();
 });
