@@ -3,10 +3,8 @@ const unitsBtn = document.getElementById("unitsBtn");
 const unitsDropdownIcon = document.getElementById("unitDropdownIcon");
 const unitsDropdown = document.getElementById("unitsdropdown");
 const weatherMetric = document.querySelectorAll(".weather-metric");
-const weatherMetricTextArray = Array.from(
-  document.querySelectorAll(".weather-metric-text"),
-);
 const weatherMetricIcon = Array.from(document.querySelectorAll(".metric-icon"));
+console.log(weatherMetricIcon);
 
 // UNITS DROPDOWN HANDLER
 const dropdownHandler = function () {
@@ -29,12 +27,12 @@ const dropdownHandler = function () {
     );
     unitsDropdownIcon.classList.add("rotate-180");
 
-    weatherMetric.forEach((metric) => {
+    document.querySelectorAll(".weather-metric").forEach((metric) => {
       metric.addEventListener("click", () => {
         const groupContainer = metric.parentElement;
 
-        groupContainer.querySelectorAll(".weather-metric").forEach((metric) => {
-          metric.querySelector(".metric-icon")?.classList.add("hidden");
+        groupContainer.querySelectorAll(".weather-metric").forEach((m) => {
+          m.querySelector(".metric-icon")?.classList.add("hidden");
         });
         metric.querySelector(".metric-icon")?.classList.remove("hidden");
       });
@@ -173,28 +171,58 @@ const hourlyDropdownHandler = function () {
 
 hourlyBtn.addEventListener("click", hourlyDropdownHandler);
 
+// WORKING ON METRICES
 const apiKey = "cad8c45718434d4e8c7132619262610";
 
 const baseUrl = "https://api.weatherapi.com/v1/forecast.json";
 
-const getWeather = function () {
-  const result = fetch(`${baseUrl}?key=${apiKey}&q=city&aqi=yes`)
+const getWeather = function (city) {
+  const result = fetch(`${baseUrl}?key=${apiKey}&q=${city}&aqi=yes&days=7`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      // console.log(data.current.feelslike_c);
-      console.log(data.location);
-      // console.log(data.current);
-      // console.log(data.forecast);
+      // console.log(typeof data);
+      locationName.innerText = `${data.location.country}, ${data.location.name}`;
+      date.innerText = `Todays Date, ${data.forecast.forecastday[0].date}`;
+      tempValue.innerText = `${data.current.temp_c}°C`;
+      tempValue.innerText = `${data.current.temp_f}°F`;
+      feelsLikeValue.innerText = data.current.feelslike_c;
+      humidityValue.innerText = `${data.current.humidity}%`;
+      windValue.innerText = data.current.wind_kph;
+      pptValue.innerText = `${data.current.precip_in} mm`;
+
+      // // DAILY FORECAST
+      // const dailyCards = document.querySelectorAll(".daily-card");
+      // const days = data.forecast.forecastday;
+      // console.log(days);
+
+      // dailyCards.forEach((card, index) => {
+      //   const dayData = days[index];
+      //   console.log(dayData);
+      //   if (!dayData) {
+      //     card.style.display = "none";
+      //     return;
+      //   }
+
+      //   card.style.display = "flex";
+
+      //   const dayName = new Date(dayData.date).toLocaleDateString("en-us", {
+      //     weekday: "short",
+      //   });
+
+      //   card.querySelector("daily-day").innerText = dayName;
+      //   card.querySelector("daily-icon").src =
+      //     "https:" + dayData.day.condition.icon;
+      //   card.querySelector("daily-high").innerText =
+      //     Math.round(dayData.day.maxtemp_c) + "°";
+      //   card.querySelector("daily-high").innerText =
+      //     Math.round(dayData.day.mintemp_c) + "°";
+      // });
     });
 };
 
 getWeather();
 
 searchBtn.addEventListener("click", () => {
-  const addedLocation = document.getElementById("locationCollector").value;
-  console.log(addedLocation);
-  locationName.innerText = `${addedLocation}, ${location.name}`;
-  // date.innerText = ;
-  // getWeather();
+  getWeather(locationCollector.value);
 });
