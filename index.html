@@ -40,9 +40,9 @@
                 <li class="font-[500] text-[#fff] text-[1.4rem]">Switch to Imperial/Metric</li>
                 <li class="font-[500] text-[#d5d4d9] text-[1.2rem]">
                   <span>Temperature</span>
-                  <ul id="weatherMetricList"
+                  <ul id="weatherMetricList1"
                     class="flex flex-col justify-center gap-[0.2rem] text-[#fff] text-[1.6rem] border-b-1 border-neutral-600">
-                    <li
+                    <li id=""
                       class="weather-metric flex items-center justify-between p-[0.5rem] transition-all duration-300 ease-out rounded-[0.5rem] hover:bg-[#3d3b5e] cursor-pointer">
                       <span class="weather-metric-text">Celsius (°C)</span>
                       <span class="metric-icon hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon" </span>
@@ -73,13 +73,13 @@
                 <li class="font-[500] text-[#d5d4d9] text-[1.2rem]">
                   <span>Precipitation</span>
                   <ul id="weatherMetricList" class="flex flex-col justify-center gap-[0.2rem] text-[#fff] text-[1.6rem]">
-                    <li id="controlIcon1"
+                    <li
                       class="weather-metric flex items-center justify-between p-[0.5rem] transition-all duration-300 ease-out rounded-[0.5rem] hover:bg-[#3d3b5e] cursor-pointer">
                       <span class="weather-metric-text">Millimeters (mm)</span>
                       <span id="metric_icon" class="metric-icon hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon"
                           </span>
                     </li>
-                    <li id="controlIcon2"
+                    <li
                       class="weather-metric flex items-center justify-between p-[0.5rem] transition-all duration-300 ease-out rounded-[0.5rem] hover:bg-[#3d3b5e] cursor-pointer">
                       <span class="weather-metric-text">Inches (in)</span>
                       <span id="metric_icon2" class="metric-icon  hidden"><img src="assets/images/icon-checkmark.svg" alt="Checkmark Icon"
@@ -101,7 +101,7 @@
               <label for="place">
                 <img src="./assets/images/icon-search.svg" alt="Search Icon"/>
               </label>
-              <input id="locationCollector" class="outline-none flex-2" type="text" id="place" placeholder="Search for a place......"
+              <input id="locationCollector" class="outline-none flex-2" type="text" id="place" placeholder="Search for a city......"
                 required />
             </span>
             <button id="searchBtn"
@@ -135,15 +135,15 @@
               </div>
               <div class="w-full bg-[#272541] p-5 rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1.2rem]">
                 <p class="text-[#aeaeb7]">Humidity</p>
-                <p id="humidityValue" class="text-[2.5rem]">46%</p>
+                <p id="humidityValue" class="text-[2.5rem]">46</p>
               </div>
               <div class="w-full bg-[#272541] p-5 rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1.2rem]">
                 <p class="text-[#aeaeb7]">Wind</p>
-                <p id="windValue" class="text-[2.5rem]">14 km/h</p>
+                <p id="windValue" class="text-[2.5rem]">14</p>
               </div>
               <div class="w-full bg-[#272541] p-5 rounded-[1rem] border-1 border-neutral-600 flex flex-col gap-[1.2rem]">
                 <p class="text-[#aeaeb7]">Precipitation</p>
-                <p id="pptValue" class="text-[2.5rem]">0 mm</p>
+                <p id="pptValue" class="text-[2.5rem]">0</p>
               </div>
             </div>
           </div>

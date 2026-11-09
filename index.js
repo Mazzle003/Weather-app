@@ -32,14 +32,46 @@ const dropdownHandler = function () {
     document.querySelectorAll(".weather-metric").forEach((metric) => {
       metric.addEventListener("click", () => {
         const groupContainer = metric.parentElement;
-        let text = metric.textContent.includes("Celsius") ? "C" : "F";
-        if (text == "C") {
+
+        let text = metric.textContent.includes("Celsius")
+          ? "C"
+          : `${metric.textContent.includes("Fahrenheit") && "F"}`;
+        // console.log(text);
+
+        if (text === "C") {
           tempValue.innerText = `${alldata.current.temp_c}°C`;
-          // feelsLikeValue.innerText = data.current.feelslike_c;
+          feelsLikeValue.innerText = `${alldata.current.feelslike_c} °C`;
         } else if (text === "F") {
           tempValue.innerText = `${alldata.current.temp_f}°F`;
-          // feelsLikeValue.innerText = data.current.feelslike_f;
+          feelsLikeValue.innerText = `${alldata.current.feelslike_c} °F`;
+        } else {
+          tempValue;
         }
+
+        let windText = metric.textContent.includes("km/h")
+          ? "km/h"
+          : `${metric.textContent.includes("mph") && "mph"}`;
+
+        if (windText == "km/h") {
+          windValue.innerText = `${alldata.current.wind_kph} kph`;
+        } else if (windText === "mph") {
+          windValue.innerText = `${alldata.current.wind_mph} mph`;
+        } else {
+          windValue;
+        }
+
+        let pptText = metric.textContent.includes("Millimeters")
+          ? "mm"
+          : `${metric.textContent.includes("Inches") && "in"}`;
+
+        if (pptText == "mm") {
+          pptValue.innerText = `${alldata.current.precip_mm} mm`;
+        } else if (pptText === "in") {
+          pptValue.innerText = `${alldata.current.precip_in} in`;
+        } else {
+          pptValue;
+        }
+
         groupContainer.querySelectorAll(".weather-metric").forEach((m) => {
           m.querySelector(".metric-icon")?.classList.add("hidden");
         });
@@ -194,11 +226,11 @@ const getWeather = function (city) {
       // console.log(typeof data);
       locationName.innerText = `${alldata.location.country}, ${alldata.location.name}`;
       date.innerText = `Todays Date, ${alldata.forecast.forecastday[0].date}`;
-      tempValue.innerText = `${alldata.current.temp_c}°C`;
+      tempValue.innerText = `${alldata.current.temp_c}°`;
       feelsLikeValue.innerText = alldata.current.feelslike_c;
       humidityValue.innerText = `${alldata.current.humidity}%`;
       windValue.innerText = alldata.current.wind_kph;
-      pptValue.innerText = `${alldata.current.precip_in} mm`;
+      pptValue.innerText = `${alldata.current.precip_in}`;
 
       // // DAILY FORECAST
       // const dailyCards = document.querySelectorAll(".daily-card");
