@@ -4,6 +4,8 @@ const unitsDropdownIcon = document.getElementById("unitDropdownIcon");
 const unitsDropdown = document.getElementById("unitsdropdown");
 const weatherMetric = document.querySelectorAll(".weather-metric");
 const weatherMetricIcon = Array.from(document.querySelectorAll(".metric-icon"));
+
+let alldata = {}
 console.log(weatherMetricIcon);
 
 // UNITS DROPDOWN HANDLER
@@ -30,7 +32,14 @@ const dropdownHandler = function () {
     document.querySelectorAll(".weather-metric").forEach((metric) => {
       metric.addEventListener("click", () => {
         const groupContainer = metric.parentElement;
-
+        let text = metric.textContent.includes("Celsius") ? "C" : "F";
+        if (text == "C") {
+          tempValue.innerText = `${alldata.current.temp_c}°C`;
+          // feelsLikeValue.innerText = data.current.feelslike_c;
+        } else if (text === "F") {
+          tempValue.innerText = `${alldata.current.temp_f}°F`;
+          // feelsLikeValue.innerText = data.current.feelslike_f;
+        }
         groupContainer.querySelectorAll(".weather-metric").forEach((m) => {
           m.querySelector(".metric-icon")?.classList.add("hidden");
         });
@@ -181,15 +190,15 @@ const getWeather = function (city) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      alldata = data;
       // console.log(typeof data);
-      locationName.innerText = `${data.location.country}, ${data.location.name}`;
-      date.innerText = `Todays Date, ${data.forecast.forecastday[0].date}`;
-      tempValue.innerText = `${data.current.temp_c}°C`;
-      tempValue.innerText = `${data.current.temp_f}°F`;
-      feelsLikeValue.innerText = data.current.feelslike_c;
-      humidityValue.innerText = `${data.current.humidity}%`;
-      windValue.innerText = data.current.wind_kph;
-      pptValue.innerText = `${data.current.precip_in} mm`;
+      locationName.innerText = `${alldata.location.country}, ${alldata.location.name}`;
+      date.innerText = `Todays Date, ${alldata.forecast.forecastday[0].date}`;
+      tempValue.innerText = `${alldata.current.temp_c}°C`;
+      feelsLikeValue.innerText = alldata.current.feelslike_c;
+      humidityValue.innerText = `${alldata.current.humidity}%`;
+      windValue.innerText = alldata.current.wind_kph;
+      pptValue.innerText = `${alldata.current.precip_in} mm`;
 
       // // DAILY FORECAST
       // const dailyCards = document.querySelectorAll(".daily-card");
